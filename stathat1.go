@@ -5,9 +5,11 @@
 // Developed at www.stathat.com by Patrick Crosby
 // Contact us on twitter with any questions:  twitter.com/stat_hat
 
-// The stathat1 package makes it easy to post any values to your StatHat
+// This version is for use with pre-Go-1 weekly releases.
+
+// The stathat package makes it easy to post any values to your StatHat
 // account.
-package stathat1
+package stathat
 
 import (
 	"fmt"

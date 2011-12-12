@@ -1,4 +1,4 @@
-package stathat1
+package stathat
 
 import (
 	"testing"
