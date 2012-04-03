@@ -84,7 +84,7 @@ func setTesting() {
 }
 
 func init() {
-	statReportChannel = make(chan *statReport, 100)
+	statReportChannel = make(chan *statReport, 100000)
 	go processStats()
 }
 
