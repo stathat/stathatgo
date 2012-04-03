@@ -106,33 +106,33 @@ func PostValue(statKey, userKey string, value float64) error {
 }
 
 // Using the EZ API, posts a count of 1 to a stat.
-func PostEZCountOne(statName, email string) error {
-	return PostEZCount(statName, email, 1)
+func PostEZCountOne(statName, ezkey string) error {
+	return PostEZCount(statName, ezkey, 1)
 }
 
 // Using the EZ API, posts a count to a stat.
-func PostEZCount(statName, email string, count int) error {
-	statReportChannel <- newEZStatCount(statName, email, count)
+func PostEZCount(statName, ezkey string, count int) error {
+	statReportChannel <- newEZStatCount(statName, ezkey, count)
 	return nil
 }
 
 // Using the EZ API, posts a value to a stat.
-func PostEZValue(statName, email string, value float64) error {
-	statReportChannel <- newEZStatValue(statName, email, value)
+func PostEZValue(statName, ezkey string, value float64) error {
+	statReportChannel <- newEZStatValue(statName, ezkey, value)
 	return nil
 }
 
-func newEZStatCount(statName, email string, count int) *statReport {
+func newEZStatCount(statName, ezkey string, count int) *statReport {
 	return &statReport{StatKey: statName,
-		UserKey:  email,
+		UserKey:  ezkey,
 		Value:    float64(count),
 		statType: COUNTER,
 		apiType:  EZ}
 }
 
-func newEZStatValue(statName, email string, value float64) *statReport {
+func newEZStatValue(statName, ezkey string, value float64) *statReport {
 	return &statReport{StatKey: statName,
-		UserKey:  email,
+		UserKey:  ezkey,
 		Value:    value,
 		statType: VALUE,
 		apiType:  EZ}
@@ -188,7 +188,7 @@ func (sr *statReport) classicValues() url.Values {
 func (sr *statReport) ezCommonValues() url.Values {
 	result := make(url.Values)
 	result.Set("stat", sr.StatKey)
-	result.Set("email", sr.UserKey)
+	result.Set("ezkey", sr.UserKey)
 	return result
 }
 
