@@ -272,7 +272,7 @@ func processStats() {
 
 // Wait for all stats to be sent, or until timeout. Useful for simple command-
 // line apps to defer a call to this in main()
-func WaitForClose(timeout time.Duration) bool {
+func WaitUntilFinished(timeout time.Duration) bool {
 	close(statReportChannel)
 	select {
 	case <-done:
@@ -280,4 +280,5 @@ func WaitForClose(timeout time.Duration) bool {
 	case <-time.After(timeout):
 		return false
 	}
+        return false
 }
