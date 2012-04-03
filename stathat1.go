@@ -5,8 +5,6 @@
 // Developed at www.stathat.com by Patrick Crosby
 // Contact us on twitter with any questions:  twitter.com/stat_hat
 
-// This version is for use with pre-Go-1 weekly releases.
-
 // The stathat package makes it easy to post any values to your StatHat
 // account.
 package stathat
@@ -18,6 +16,7 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"time"
 )
 
 type statKind int
@@ -78,6 +77,8 @@ type testPost struct {
 var testPostChannel chan *testPost
 var Verbose = false
 
+var done chan bool
+
 func setTesting() {
 	testingEnv = true
 	testPostChannel = make(chan *testPost)
@@ -86,6 +87,7 @@ func setTesting() {
 func init() {
 	statReportChannel = make(chan *statReport, 100000)
 	go processStats()
+	done = make(chan bool)
 }
 
 // Using the classic API, posts a count to a stat.
@@ -237,7 +239,12 @@ func (sr *statReport) url() string {
 
 func processStats() {
 	for {
-		sr := <-statReportChannel
+		sr, ok := <-statReportChannel
+
+		if !ok {
+			done <- true
+			break
+		}
 
 		if Verbose {
 			log.Printf("posting stat to stathat: %s, %v", sr.url(), sr.values())
@@ -260,5 +267,17 @@ func processStats() {
 		}
 
 		r.Body.Close()
+	}
+}
+
+// Wait for all stats to be sent, or until timeout. Useful for simple command-
+// line apps to defer a call to this in main()
+func WaitForClose(timeout time.Duration) bool {
+	close(statReportChannel)
+	select {
+	case <-done:
+		return true
+	case <-time.After(timeout):
+		return false
 	}
 }
