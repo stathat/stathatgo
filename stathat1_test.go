@@ -106,7 +106,7 @@ func TestURLValues(t *testing.T) {
 	if v.Get("stat") != "abc" {
 		t.Errorf("expected abc")
 	}
-	if v.Get("email") != "pc@pc.com" {
+	if v.Get("ezkey") != "pc@pc.com" {
 		t.Errorf("expected pc@pc.com")
 	}
 	if v.Get("count") != "1" {
@@ -121,7 +121,7 @@ func TestURLValues(t *testing.T) {
 	if v.Get("stat") != "abc" {
 		t.Errorf("expected abc")
 	}
-	if v.Get("email") != "pc@pc.com" {
+	if v.Get("ezkey") != "pc@pc.com" {
 		t.Errorf("expected pc@pc.com")
 	}
 	if v.Get("value") != "3.14159" {
@@ -247,7 +247,7 @@ func TestPosts(t *testing.T) {
 	if p.values.Get("stat") != "a stat" {
 		t.Errorf("expected a stat")
 	}
-	if p.values.Get("email") != "pc@pc.com" {
+	if p.values.Get("ezkey") != "pc@pc.com" {
 		t.Errorf("expected pc@pc.com")
 	}
 	if p.values.Get("count") != "1" {
@@ -262,7 +262,7 @@ func TestPosts(t *testing.T) {
 	if p.values.Get("stat") != "a stat" {
 		t.Errorf("expected a stat")
 	}
-	if p.values.Get("email") != "pc@pc.com" {
+	if p.values.Get("ezkey") != "pc@pc.com" {
 		t.Errorf("expected pc@pc.com")
 	}
 	if p.values.Get("count") != "213" {
@@ -277,7 +277,7 @@ func TestPosts(t *testing.T) {
 	if p.values.Get("stat") != "a stat" {
 		t.Errorf("expected a stat")
 	}
-	if p.values.Get("email") != "pc@pc.com" {
+	if p.values.Get("ezkey") != "pc@pc.com" {
 		t.Errorf("expected pc@pc.com")
 	}
 	if p.values.Get("value") != "2.13" {
