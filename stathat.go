@@ -280,5 +280,5 @@ func WaitUntilFinished(timeout time.Duration) bool {
 	case <-time.After(timeout):
 		return false
 	}
-        return false
+	return false
 }
