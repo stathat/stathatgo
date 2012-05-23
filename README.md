@@ -1,4 +1,4 @@
-stathatgo1
+stathatgo
 ==========
 
 This is a Go package for posting stats to your StatHat account.
