@@ -3,25 +3,22 @@ stathatgo1
 
 This is a Go package for posting stats to your StatHat account.
 
-*NOTE:* this version, stathatgo1, is for use with the weekly releases of Go.
-For the release version, use stathatgo.
-
 For more information about StatHat, visit [www.stathat.com](http://www.stathat.com).
 
 Installation
 ------------
 
-Use `goinstall`:
+Use `go install`:
 
-    goinstall github.com/stathat/stathatgo1
+    go install github.com/stathat/stathatgo
 
 That's it.
 
-If you are building your code with `goinstall`, you can skip the previous step and just
+If you are building your code with `go install`, you can skip the previous step and just
 import `stathatgo` as follows:
 
     import (
-            "github.com/stathat/stathatgo1"
+            "github.com/stathat/stathatgo"
     )
 
 Usage
